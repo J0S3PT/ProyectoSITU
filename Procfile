@@ -1,1 +1,1 @@
-web: gunicorn ProyectoSITU.wsgi.application --log-file -
+web: python manage.py
