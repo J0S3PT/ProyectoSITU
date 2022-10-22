@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import dj_database_url
+import django_heroku
 
 from pathlib import Path
 
@@ -23,9 +25,12 @@ print('RUTA de mi proy',BASE_DIR)
 SECRET_KEY = 'django-insecure-af(gu6!2993md_qjot2c1pfwz=sb(q$-$xhnjhq^=_kkt@r@_7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+#remove https://from the url
+#use * if you want to allow all hosts.
+ALLOWED_HOSTS = ['<url>']
+# ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,6 +53,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #whitenoise
+     
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ProyectoSITU.urls'
@@ -113,9 +121,12 @@ USE_I18N = True
 USE_TZ = True
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 STATIC_URL = 'static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "templates/static",
@@ -124,3 +135,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de Django Heroku
+django_heroku.settings(locals())
