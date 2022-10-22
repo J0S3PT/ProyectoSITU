@@ -28,12 +28,12 @@ print('RUTA de mi proy',BASE_DIR)
 SECRET_KEY = 'django-insecure-af(gu6!2993md_qjot2c1pfwz=sb(q$-$xhnjhq^=_kkt@r@_7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #remove https://from the url
 #use * if you want to allow all hosts.
-ALLOWED_HOSTS = ['<url>']
-# ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['<url>']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
