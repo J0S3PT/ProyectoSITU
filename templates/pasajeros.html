@@ -42,7 +42,10 @@
                         {{e.imagen}}
                         </td>
                         <td>{{e.correo}}</td>
-                        <td><a href="{% url 'pasajerosEdit' e.id %}"  class="btn btn-info">Editar</a></td>
+                        <td>
+                            <a href="{% url 'pasajerosView' e.id %}"  class="btn btn-info">Ver</a>
+                            <a href="{% url 'pasajerosEdit' e.id %}"  class="btn btn-info">Editar</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
