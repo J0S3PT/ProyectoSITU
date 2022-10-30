@@ -30,3 +30,17 @@ def pasajerosEdit(request, id):
             return redirect(to="pasajeros")
 
     return render(request,'pasajerosEdit.html',data)
+
+def pasajerosView(request, id):
+    pasajeros = get_object_or_404(Pasajero, id = id)
+    data = {
+        'form' : PasajeroFormulario(instance=pasajeros)
+    }
+
+    if request.method == 'POST':
+        formulario = PasajeroFormulario(data=request.POST, instance=pasajeros, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="pasajeros")
+
+    return render(request,'pasajerosView.html',data)
